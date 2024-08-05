@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 import Viewer from './viewer'
-import useStore from '../utils/store'
 
-const Result = () => {
-  const { scene, generateScene } = useStore()
-
+const Result = ({ scene, generateScene }) => {
   const config = {
     types: false,
     shadows: true,
@@ -20,7 +17,7 @@ const Result = () => {
 
   useEffect(() => {
     generateScene(config)
-  }, [config])
+  }, [])
 
   return (
     <div className="h-full w-screen p-20 bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -30,6 +27,7 @@ const Result = () => {
         <section className="h-full w-full col-span-2 bg-white rounded-lg shadow-lg">
           {scene && (
             <Viewer
+              scene={scene}
               shadows={true}
               contactShadow={true}
               autoRotate={true}

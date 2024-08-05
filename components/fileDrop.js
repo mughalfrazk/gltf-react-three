@@ -13,9 +13,7 @@ const FileDrop = ({ onDrop, useSuzanne }) => {
         <p className="text-4xl font-bold text-blue-600">Drop the files here...</p>
       ) : (
         <p className="text-4xl font-bold">
-          Drag {"'"}n{"'"} drop your GLTF file {" "}
-          <button className="text-blue-600">here</button>
-          {" "} or try it with {" "}
+          Drag {"'"}n{"'"} drop your GLTF file <button className="text-blue-600">here</button> or try it with{' '}
           <button className="text-blue-600" onClick={useSuzanne}>
             Suzanne
           </button>
