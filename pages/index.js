@@ -1,12 +1,9 @@
 import { useCallback } from 'react'
-import { Toaster } from 'react-hot-toast'
 import JSZip from 'jszip'
 import { encode as arrayBufferToBase64 } from 'base64-arraybuffer'
 import dynamic from 'next/dynamic'
 import suzanne from '../public/suzanne.gltf'
-import SEO from '../components/SEO'
 import FileDrop from '../components/fileDrop'
-import Footer from '../components/footer'
 import useStore from '../utils/store'
 import { isGlb, isGltf, isZip } from '../utils/isExtension'
 import { loadFileAsArrayBuffer, stringToArrayBuffer } from '../utils/buffers'
@@ -68,9 +65,6 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center flex-1" style={{ height: 'calc(100vh - 56px)' }}>
         {buffers ? <Result /> : <FileDrop onDrop={onDrop} useSuzanne={useSuzanne} />}
       </main>
-      <SEO />
-      <Toaster />
-      <Footer />
     </div>
   )
 }

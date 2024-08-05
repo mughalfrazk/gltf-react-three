@@ -1,11 +1,8 @@
-import { saveAs } from 'file-saver'
-import { create } from 'zustand'
 import * as THREE from 'three'
-import { createZip } from '../utils/createZip'
-import { parse } from 'gltfjsx'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
+import { create } from 'zustand'
 import { KTXLoader } from 'three-stdlib'
 
 const useStore = create((set, get) => ({
@@ -13,15 +10,7 @@ const useStore = create((set, get) => ({
   buffers: null,
   textOriginalFile: '',
   animations: false,
-  code: '',
   scene: null,
-  createZip: async ({ sandboxCode }) => {
-    await import('../utils/createZip').then((mod) => mod.createZip)
-    const { fileName } = get()
-    const blob = await createZip({ sandboxCode })
-
-    saveAs(blob, `${fileName.split('.')[0]}.zip`)
-  },
   generateScene: async (config) => {
     const { fileName: rawFileName, buffers } = get()
     const fileName = config.pathPrefix && config.pathPrefix !== '' ? `${config.pathPrefix}/${rawFileName}` : rawFileName
@@ -71,10 +60,10 @@ const useStore = create((set, get) => ({
         gltfLoader.parse(buffers.entries().next().value[1], '', resolve, reject)
       )
     }
-    const code = await parse(result, { ...config, fileName, printwidth: 100 })
-
+    // const code = await parse(result, { ...config, fileName, printwidth: 100 })
+    // console.log("code: ", code)
     set({
-      code,
+      code: "",
       animations: !!result.animations.length,
     })
     if (!get().scene) set({ scene: result.scene })
