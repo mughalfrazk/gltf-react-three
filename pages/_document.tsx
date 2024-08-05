@@ -15,11 +15,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <Script
-            data-domain="gltf.pmnd.rs"
-            src="https://analytics.iamsaravieira.com/js/plausible.js"
-            strategy="afterInteractive"
-          />
         </body>
       </Html>
     )
